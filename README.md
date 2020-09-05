@@ -34,6 +34,28 @@ print(type(city_salary))
 print(type(city_list))
 ```
 
-## 3 head iloc info type
+# 3 head iloc info type
+```python
+
+print(city_list.head())
+print(city_salary.iloc[1:3])
+print(city_salary.iloc[1,2])
+print(city_salary.head())
+print(city_salary.info())
+print(city_list.iloc[1])
+print(city_salary.iloc[1])
+```
+
+# 4 df logic operation
+```python
+hz = df[df.city_name == 'Hangzhou']
+hznj = df[(df.city_name == 'Hangzhou') | (df.city_name == 'Nanjing')]
+hznj = df[df.city_name.isin(['Hangzhou', 'Nanjing'])]
+hznj.reset_index(inplace=True, drop=True)
+hznj.reset_index(inplace=True)
+hznj1 = hznj.reset_index()
+```
+
+# 5 read csv modify df
 
 2 head() iloc index location
