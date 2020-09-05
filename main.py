@@ -1,33 +1,19 @@
 import pandas as pd
 
-df = pd.DataFrame([
-    [1, 'Hangzhou',  2000, ],
-    [2, 'Shanghai',  4000, ],
-    [3, 'Beijing',   5000, ],
-    [4, 'Guangdong', 3000, ],
-    [5, 'Shenzhen',  5000, ],
-    [6, 'Nanjing',   2000, ],
-],
-    columns=['city id', 'city_name', 'average salary'])
+df = pd.read_csv('employee.csv')
+# print(df)
 
-city_list = df.city_name
-city_list = df['city_name']
-city_salary = df[['city_name', 'average salary']]
+# df['mood'] = ['happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy',
+#               'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', ]
+# df['mood'] = df.company.apply(lambda x: 'happy' if x == 'Uber' else 'unhappy')
+# df['MOOD'] = df['mood'].apply(lambda x: x.upper())
+# df['total_wage'] = df.apply(
+#     lambda x: x.hours_worked*x.hourly_wage, axis='columns')
+# df['total_wage'] = df['hourly_wage']*df['hours_worked']
 
-# print(city_salary.info())
-# print(type(city_salary))
-# print(city_list.head())
-# print(city_list.iloc[1])
-
-# print(type(city_salary.iloc[1]))
-
-hz = df[df.city_name == 'Hangzhou']
-hznj = df[(df.city_name == 'Hangzhou') | (df.city_name == 'Nanjing')]
-hznj = df[df.city_name.isin(['Hangzhou', 'Nanjing'])]
-hznj.reset_index(inplace=True, drop=True)
-hznj.reset_index(inplace=True)
-hznj1 = hznj.reset_index()
-
-print(hznj)
-
-print(hznj1)
+df.columns = ['column 1', 'column 2', 'column 3',
+              'column 4', 'column 5', 'column 6', ]
+df = df.rename(columns={'id': 'ID'})
+df = df.rename(str.upper, axis=1)
+print(df)
+print(df.info())

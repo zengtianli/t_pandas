@@ -56,6 +56,24 @@ hznj.reset_index(inplace=True)
 hznj1 = hznj.reset_index()
 ```
 
-# 5 read csv modify df
+# 5 read csv modify df, rename columns
+```python
 
-2 head() iloc index location
+df['mood'] = ['happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy',
+                 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', ]
+df['mood'] = df.company.apply(lambda x: 'happy' if x == 'Uber' else 'unhappy')
+df.columns = ['column 1', 'column 2', 'column 3',
+              'column 4', 'column 5', 'column 6', ]
+df = df.rename(columns={'id': 'ID'})
+df = df.rename(str.upper, axis=1)
+df['total_wage'] = df.apply(
+    lambda x: x.hours_worked*x.hourly_wage, axis='columns')
+df['total_wage'] = df['hourly_wage']*df['hours_worked']
+```
+
+# 6 df calculation
+```python
+
+```
+
+<++>
