@@ -1,19 +1,27 @@
 import pandas as pd
 
 df = pd.read_csv('employee.csv')
-# print(df)
 
-# df['mood'] = ['happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy',
-#               'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', 'happy', ]
-# df['mood'] = df.company.apply(lambda x: 'happy' if x == 'Uber' else 'unhappy')
-# df['MOOD'] = df['mood'].apply(lambda x: x.upper())
-# df['total_wage'] = df.apply(
-#     lambda x: x.hours_worked*x.hourly_wage, axis='columns')
-# df['total_wage'] = df['hourly_wage']*df['hours_worked']
+df['total_wage'] = df.apply(
+    lambda x: x.hours_worked*x.hourly_wage, axis='columns')
+df['total_wage'] = df['hourly_wage']*df['hours_worked']
+max_wage = df.total_wage.max()
+maxwag_cmp = df.groupby('company').total_wage.max()
+maxwagcmp_idx = df.groupby('company').total_wage.max().reset_index()
+company_num = df.company.nunique()
+company_list = df.company.unique()
+stafcmp = df.groupby('company').id.count().reset_index()
+stafgencmp = df.groupby(['company', 'gender']).id.count().reset_index()
 
-df.columns = ['column 1', 'column 2', 'column 3',
-              'column 4', 'column 5', 'column 6', ]
-df = df.rename(columns={'id': 'ID'})
-df = df.rename(str.upper, axis=1)
+# print(max_wage)
+# print(company_list)
+# print(company_num)
+# print(maxwag_cmp)
+# print(maxwagcmp_idx)
+# print(stafcmp)
+
+print(stafgencmp)
+table = pd.pivot_table(stafgencmp, values='id',
+                       columns='gender', index='company').reset_index()
+print(table)
 print(df)
-print(df.info())
