@@ -89,4 +89,25 @@ table = pd.pivot_table(stafgencmp, values='id',
 
 ```
 
+# 7 operation in multiple df
+## 7.1 merge inner merge
+```python
+all_data = sales.merge(targets).merge(mw_sales)
+sales_targets = pd.merge(sales, targets)
+re_gt_tag = sales_targets[sales_targets.revenue > sales_targets.target]
+re_gt_tag_wm = all_data[(all_data.revenue > all_data.target)
+                        & (all_data.women > all_data.men)]
+
+```
+
+## 7.2 merge on specific columns
+
+```python
+orders = pd.read_csv('./spe_merge/orders.csv')
+products = pd.read_csv('./spe_merge/products.csv')
+ord_prd_mg = pd.merge(orders, products)
+ord_prd_smg = pd.merge(orders, products.rename(columns={'id': 'product_id'}))
+
+```
+
 <++>
