@@ -1,12 +1,17 @@
 import pandas as pd
+df = pd.read_csv('employee.csv')
+df_lyft = df[df.company == 'Lyft']
+# print(df_lyft)
+# df_lyftdidi = df[(df.company == 'Lyft') | (df.company == 'Didi')]
+# print(df_lyftdidi)
+df_isin = df[df.company.isin(['Lyft', 'Didi'])]
+df_isin_reidx = df_isin.reset_index()
+# print(df_isin_reidx)
+# print(df_isin)
+# df_isin_reidx = df_isin.reset_index(drop=True, inplace=True)
+# print(df_isin_reidx)
+# print(df_isin)
 
-orders = pd.read_csv('./spe_merge/orders.csv')
-products = pd.read_csv('./spe_merge/products.csv')
-ord_prd_mg = pd.merge(orders, products)
-ord_prd_smg = pd.merge(orders, products.rename(columns={'id': 'product_id'}))
-
-print(orders)
-print(products)
-
-print(ord_prd_mg)
-print(ord_prd_smg)
+df['new_col0'] = 1
+df['new_col1'] = [i for i in range(20)]
+print(df)
